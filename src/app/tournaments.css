@@ -1,0 +1,441 @@
+/* tournaments.css - Styles for the /tournaments page */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tournaments-page {
+  background-color: var(--color-background);
+  min-height: 100vh;
+  padding-top: 100px; /* Account for fixed header */
+  padding-bottom: 60px;
+  color: var(--color-text);
+  font-family: var(--font-body), sans-serif;
+  background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 1)), url('/images/hero_bg.jpg');
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed;
+}
+
+/* Page Header */
+.tour-page-header {
+  position: relative;
+  padding: 40px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tour-page-subtitle {
+  color: var(--color-accent);
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.tour-page-title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tour-page-desc {
+  color: #94a3b8;
+  font-size: 1rem;
+  max-width: 600px;
+}
+
+/* Filter Bar */
+.tour-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tour-tabs {
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.tour-tab {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.tour-tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tour-tab.active {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+}
+
+.tour-filters {
+  display: flex;
+  gap: 15px;
+}
+
+.tour-dropdown {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Tournament Row Card */
+.tour-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tour-row {
+  display: flex;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+  min-height: 160px;
+}
+
+.tour-row:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+/* Column 1: Thumbnail */
+.tour-thumb {
+  position: relative;
+  width: 350px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.tour-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(2, 6, 23, 0.8) 0%, rgba(2, 6, 23, 0.2) 50%, rgba(2, 6, 23, 0.9) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tour-thumb-badge {
+  align-self: flex-start;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.badge-upcoming { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+.badge-registration { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); }
+.badge-live { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+.badge-completed { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.4); }
+
+.tour-thumb-info h4 {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.2rem;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+}
+
+.tour-thumb-info p {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tour-thumb-game {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Column 2: Details */
+.tour-details {
+  flex-grow: 1;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tour-game-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.tour-details h3 {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.4rem;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+.tour-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.tour-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tour-stat-icon {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.tour-stat-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-stat-val {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+}
+
+.tour-stat-label {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+/* Column 3: Action */
+.tour-action {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.tour-status-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.dot-upcoming { background: #60a5fa; box-shadow: 0 0 8px #60a5fa; }
+.dot-registration { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+.dot-live { background: #f87171; box-shadow: 0 0 8px #f87171; }
+.dot-completed { background: #cbd5e1; }
+
+.tour-countdown-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.tour-countdown {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cd-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cd-val {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cd-label {
+  font-size: 0.6rem;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.tour-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 20px;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.tour-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tour-btn.btn-outline-primary {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.tour-btn.btn-outline-primary:hover {
+  background: rgba(0, 240, 255, 0.1);
+}
+
+/* Pagination */
+.tour-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 40px;
+}
+
+.page-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.page-btn.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .tour-page-title {
+    font-size: 1.8rem;
+  }
+  
+  .tour-row {
+    flex-direction: column;
+  }
+  
+  .tour-thumb {
+    width: 100%;
+    height: 180px;
+  }
+  
+  .tour-thumb h4 {
+    display: none; /* Hide duplicate title on mobile */
+  }
+  
+  .tour-details {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px 15px;
+  }
+  
+  .tour-details h3 {
+    font-size: 1.2rem;
+  }
+  
+  .tour-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .tour-action {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 20px 15px;
+  }
+  
+  .tour-btn {
+    max-width: 100%;
+  }
+}

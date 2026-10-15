@@ -1,0 +1,761 @@
+/* tournament-details.css — Matches reference e-sports dashboard design */
+
+/* =====================================================
+   PAGE SHELL
+   ===================================================== */
+.tour-details-page {
+  min-height: 100vh;
+  background-color: #060c1a;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(14, 165, 233, 0.07) 0%, transparent 55%),
+    linear-gradient(to bottom, #060c1a 0%, #080f20 100%);
+  background-attachment: fixed;
+  color: #e2e8f0;
+  font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.tdd-wrapper {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* =====================================================
+   LOADING / ERROR STATE
+   ===================================================== */
+.tdd-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px;
+  text-align: center;
+  color: #38bdf8;
+  font-family: var(--font-heading), sans-serif;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  gap: 14px;
+}
+
+.tdd-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(56, 189, 248, 0.15);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =====================================================
+   HERO BANNER
+   ===================================================== */
+.tdd-hero {
+  position: relative;
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  min-height: 300px;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+}
+
+.tdd-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(6, 12, 26, 0.97) 0%,
+    rgba(6, 12, 26, 0.85) 45%,
+    rgba(6, 12, 26, 0.2) 100%
+  );
+}
+
+.tdd-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 300px;
+  padding: 28px 32px 32px;
+}
+
+/* Back link */
+.tdd-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #38bdf8;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s;
+}
+.tdd-back-link:hover {
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+/* Hero bottom section */
+.tdd-hero-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+  margin-top: auto;
+}
+
+.tdd-hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Status badge */
+.tdd-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.tdd-status-badge.running {
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  color: #4ade80;
+}
+.tdd-status-badge.completed {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fbbf24;
+}
+.tdd-status-badge.open {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+.tdd-status-badge.upcoming {
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #94a3b8;
+}
+
+.tdd-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Hero title */
+.tdd-hero-title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.05;
+  margin: 0;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Presented By row — single inline line */
+.tdd-hero-presented {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+.tdd-presented-label {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.tdd-presented-name {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(56, 189, 248, 0.5);
+}
+
+/* =====================================================
+   TAB NAV ROW
+   ===================================================== */
+.tdd-tabs-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(30, 58, 106, 0.5);
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+
+.tdd-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #64748b;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.tdd-tab:hover {
+  color: #e2e8f0;
+  background: rgba(30, 58, 106, 0.25);
+}
+.tdd-tab.active {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.tdd-tab-badge {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.68rem;
+}
+
+/* =====================================================
+   CONTENT AREA
+   ===================================================== */
+.tdd-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =====================================================
+   GENERIC CARD
+   ===================================================== */
+.tdd-card {
+  background: rgba(8, 16, 34, 0.85);
+  border: 1px solid rgba(30, 58, 106, 0.65);
+  border-radius: 12px;
+  padding: 26px 28px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.tdd-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.tdd-card-heading.gold {
+  color: #fbbf24;
+}
+
+/* OVERVIEW CARD — full-width info */
+.tdd-overview-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.tdd-overview-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+
+/* ─── Stats row ─────────────────────── */
+.tdd-stats-row {
+  display: flex;
+  align-items: stretch;
+  background: rgba(12, 22, 44, 0.7);
+  border: 1px solid rgba(30, 58, 106, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.tdd-stat-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px 16px;
+}
+
+.tdd-stat-divider {
+  width: 1px;
+  background: rgba(30, 58, 106, 0.6);
+  align-self: stretch;
+}
+
+.tdd-stat-label {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.tdd-stat-val-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tdd-stat-icon {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.tdd-stat-value {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* Status text colors */
+.tdd-status-text.running { color: #4ade80; }
+.tdd-status-text.completed { color: #fbbf24; }
+.tdd-status-text.open { color: #38bdf8; }
+.tdd-status-text.upcoming { color: #94a3b8; }
+
+/* =====================================================
+   WINNERS PODIUM
+   ===================================================== */
+.tdd-podium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.tdd-podium-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+.tdd-podium-card:hover { transform: translateY(-2px); }
+
+.tdd-podium-card.champ {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.13) 0%, rgba(8, 16, 34, 0.9) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  box-shadow: 0 0 22px rgba(251, 191, 36, 0.12);
+}
+.tdd-podium-card.finalist {
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.08) 0%, rgba(8, 16, 34, 0.9) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.tdd-podium-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #0f1d38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+.tdd-podium-card.champ .tdd-podium-avatar {
+  border: 2px solid #fbbf24;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+}
+.tdd-podium-card.finalist .tdd-podium-avatar {
+  border: 2px solid #64748b;
+}
+.tdd-podium-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tdd-podium-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tdd-podium-rank {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  width: fit-content;
+}
+.tdd-podium-rank.champ {
+  background: rgba(251, 191, 36, 0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+}
+.tdd-podium-rank.place {
+  background: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+.tdd-podium-name {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+.tdd-podium-card.champ .tdd-podium-name { color: #fbbf24; }
+.tdd-podium-id {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+/* =====================================================
+   HORIZONTAL PLAYERS ROW CARD (matches reference image)
+   ===================================================== */
+.tdd-players-row-card {
+  padding: 22px 24px;
+}
+
+/* Fitted row — no scrollbar */
+.tdd-hscroll-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+/* Individual player card */
+.tdd-hplayer-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(12, 22, 44, 0.5);
+  border: 1px solid rgba(30, 58, 106, 0.45);
+  border-radius: 10px;
+  flex: 1 1 0;
+  min-width: 0;
+  transition: all 0.2s;
+  cursor: default;
+}
+.tdd-hplayer-card:hover {
+  background: rgba(14, 165, 233, 0.08);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+/* +N remaining bubble */
+.tdd-hplayer-remaining {
+  flex-shrink: 0;
+  min-width: 52px;
+  height: 66px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.5px;
+}
+
+/* Avatar + Discord badge */
+.tdd-hplayer-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.tdd-hplayer-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0f1d38;
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+.tdd-hplayer-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Discord badge bottom-right of avatar */
+.tdd-discord-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #5865f2;
+  border: 2px solid #060c1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* Name + ID */
+.tdd-hplayer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  min-width: 0;
+}
+.tdd-hplayer-name {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+.tdd-hplayer-id {
+  font-size: 0.66rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Centered VIEW ALL PLAYERS button */
+.tdd-view-all-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.tdd-view-all-center-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #e2e8f0;
+  padding: 9px 24px;
+  border-radius: 6px;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.22s;
+}
+.tdd-view-all-center-btn:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.tdd-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #17427d;
+  border: 1px solid #38bdf8;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 3px 14px rgba(23, 66, 125, 0.4);
+}
+.tdd-view-all-btn:hover {
+  background: #1e55a0;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   FULL DIRECTORY (expanded)
+   ===================================================== */
+.tdd-directory {
+  margin-top: 4px;
+}
+
+.tdd-search-bar {
+  position: relative;
+  margin-bottom: 16px;
+}
+.tdd-search-bar input {
+  width: 100%;
+  background: rgba(12, 22, 44, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+  padding: 11px 16px 11px 40px;
+  color: #ffffff;
+  font-size: 0.84rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+.tdd-search-bar input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.22);
+}
+.tdd-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+}
+
+.tdd-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tdd-dir-tile {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 13px;
+  background: rgba(12, 22, 44, 0.5);
+  border: 1px solid rgba(30, 58, 106, 0.45);
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.tdd-dir-tile:hover {
+  background: rgba(14, 165, 233, 0.08);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-2px);
+}
+.tdd-dir-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #0f1d38;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+.tdd-dir-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tdd-dir-info { display: flex; flex-direction: column; overflow: hidden; }
+.tdd-dir-name {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tdd-dir-id {
+  font-size: 0.68rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 860px) {
+  .tdd-overview-card {
+    grid-template-columns: 1fr;
+  }
+  .tdd-overview-thumb {
+    min-height: 160px;
+  }
+  .tdd-stats-row {
+    flex-wrap: wrap;
+  }
+  .tdd-stat-cell {
+    flex: 1 1 45%;
+  }
+  .tdd-stat-divider { display: none; }
+  .tdd-hero-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 560px) {
+  .tdd-hero-title { font-size: 1.75rem; }
+  .tdd-hero-inner { padding: 20px 16px 24px; }
+  .tdd-card { padding: 18px 16px; }
+  .tdd-stat-cell { flex: 1 1 100%; }
+  .tdd-players-row {
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  }
+}
